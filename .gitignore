@@ -40,3 +40,7 @@ build/
 # === OS-specific ===
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# === Docker / local env ===
+.env

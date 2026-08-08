@@ -28,7 +28,9 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
-      - "8090:8090"
+      # Le port hôte 8090 est déjà pris par un autre projet sur cette machine ;
+      # l'app écoute toujours sur 8090 à l'intérieur du conteneur.
+      - "8091:8090"
 
 volumes:
   pgdata:

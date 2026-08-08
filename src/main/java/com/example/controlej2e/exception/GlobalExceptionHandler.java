@@ -1,6 +1,8 @@
 package com.example.controlej2e.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,6 +18,8 @@ import java.util.Map;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(ComputerNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(ComputerNotFoundException ex, HttpServletRequest request) {
@@ -45,6 +49,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
+        // Toujours logger la vraie exception : sans ça, un bug renvoyé au client
+        // sous forme de message générique devient invisible côté serveur.
+        log.error("Erreur non gérée sur {} {}", request.getMethod(), request.getRequestURI(), ex);
         return build(HttpStatus.INTERNAL_SERVER_ERROR, "Une erreur inattendue est survenue", request);
     }
 

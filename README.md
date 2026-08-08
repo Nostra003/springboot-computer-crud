@@ -27,6 +27,7 @@ API REST Spring Boot pour gérer un parc d'ordinateurs (CRUD complet) : créer, 
 
 L'API démarre sur `http://localhost:8090`. Elle est pré-remplie avec 4 ordinateurs de démo au démarrage.
 
+- **Interface web** (tableau + formulaire CRUD) : `http://localhost:8090/`
 - Console H2 : `http://localhost:8090/h2-console` (JDBC URL : `jdbc:h2:mem:computers-db`, user `sa`, pas de mot de passe)
 - Documentation Swagger UI : `http://localhost:8090/swagger-ui.html`
 
@@ -103,7 +104,11 @@ src/main/java/com/example/controlej2e/
 ├── dao/           # Repositories Spring Data JPA
 ├── entities/      # Entités JPA
 ├── dto/           # DTOs + mapping entité <-> DTO
-└── exception/      # Exceptions métier + gestion d'erreurs centralisée
+├── config/        # Configuration (seeding de données de démo)
+└── exception/     # Exceptions métier + gestion d'erreurs centralisée
+
+src/main/resources/static/   # Interface web statique (HTML/CSS/JS vanilla,
+                              # servie directement par Spring Boot sur "/")
 ```
 
 ## Licence

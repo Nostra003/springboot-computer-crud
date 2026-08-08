@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion du parc informatique</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <h1>🖥️ Gestion du parc informatique</h1>
+            <p class="subtitle">CRUD sur une API Spring Boot — <a href="/swagger-ui/index.html">voir la doc API</a></p>
+        </div>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2 id="form-title">Ajouter un ordinateur</h2>
+            <form id="computer-form">
+                <input type="hidden" id="idPc">
+                <div class="form-grid">
+                    <label>
+                        Processeur
+                        <input type="text" id="proce" placeholder="ex: i7" required>
+                    </label>
+                    <label>
+                        RAM (Go)
+                        <input type="number" id="ram" min="1" required>
+                    </label>
+                    <label>
+                        Disque dur (Go)
+                        <input type="number" id="hardDrive" min="1" required>
+                    </label>
+                    <label>
+                        Prix (€)
+                        <input type="number" id="price" min="0" step="0.01" required>
+                    </label>
+                    <label class="span-2">
+                        Adresse MAC
+                        <input type="text" id="macAddress" placeholder="ex: AA-BB-CC-DD-EE-FF" required>
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn">Ajouter</button>
+                    <button type="button" id="cancel-btn" class="secondary" hidden>Annuler</button>
+                </div>
+                <p id="form-error" class="error-message" role="alert" hidden></p>
+            </form>
+        </section>
+
+        <section class="card">
+            <div class="table-header">
+                <h2>Ordinateurs</h2>
+                <button id="refresh-btn" class="secondary" title="Rafraîchir">⟳ Rafraîchir</button>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Processeur</th>
+                            <th>RAM</th>
+                            <th>Disque dur</th>
+                            <th>Prix</th>
+                            <th>Adresse MAC</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="computers-body">
+                        <tr><td colspan="7" class="empty-state">Chargement…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
